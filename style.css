@@ -24,7 +24,6 @@ body {
   100% { background-position: 100% 50%; }
 }
 
-/* Sparkling effect */
 #bg-sparkle {
   pointer-events: none;
   position: fixed;
@@ -86,7 +85,7 @@ body {
   100% { opacity: 1; transform: none;}
 }
 
-.choice-btn {
+.choice-btn, .consolation-btn {
   display: block;
   background: linear-gradient(90deg, #57339e 10%, #a783ff 90%);
   color: #fff;
@@ -102,7 +101,7 @@ body {
   cursor: pointer;
   box-shadow: 0 2px 14px #0d0c22cc;
 }
-.choice-btn:hover {
+.choice-btn:hover, .consolation-btn:hover {
   background: linear-gradient(90deg, #a783ff 10%, #57339e 90%);
   box-shadow: 0 4px 24px #c8baff60;
   color: #fffbe7;
@@ -115,13 +114,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
+  font-size: 2.1rem;
   color: #ff4060;
   z-index: 100;
   font-weight: bold;
   text-shadow: 0 4px 36px #e11d40cc, 0 1px 2px #fff8;
-  animation: loserFlash 1.5s;
-  letter-spacing: 0.08em;
+  animation: loserFlash 1.9s;
+  letter-spacing: 0.05em;
+  text-align: center;
+  padding: 2rem;
 }
 @keyframes loserFlash {
   0%   { opacity: 0;   filter: blur(8px);}
@@ -129,4 +130,25 @@ body {
   60%  { opacity: 1;   filter: blur(0);}
   80%  { opacity: 0.7; filter: blur(2.5px);}
   100% { opacity: 0;   filter: blur(15px);}
+}
+
+/* Mobile responsive styles */
+@media (max-width: 480px) {
+  .game-box {
+    max-width: 98vw;
+    min-width: 0;
+    padding: 1.1rem 0.5rem 1.2rem 0.5rem;
+  }
+  .story-text {
+    font-size: 1.04rem;
+  }
+  .choice-btn, .consolation-btn {
+    width: 98%;
+    font-size: 1rem;
+    padding: 0.9rem 0.2rem;
+  }
+  .loser-flash {
+    font-size: 1.16rem;
+    padding: 0.5rem;
+  }
 }
