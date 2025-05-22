@@ -17,38 +17,131 @@
 })();
 
 const story = [
-  { // 0: Starting scene
+  { // 0: Starting scene - Crossroads near Krondor
     text: `
-    <b>Welcome to Shadows of Midkemia!</b><br>
+    <b>The road dust of the King's Highway settles around you.</b><br>
     <br>
-    You stand at a dusty crossroads, the wind whispering ancient tales. A weathered signpost points in two directions. Where will your adventure begin?
+    You stand at a crossroads near the bustling city of Krondor. The air hums with untold possibilities. To the north, the shadowy expanse of the Dimwood. To the east, a lesser-travelled path winds towards the coast and whispers of Sorcerer's Isle. Or perhaps the city itself calls to you?
     `,
     choices: [
-      { text: "Venture into the Whispering Woods", next: 1 },
-      { text: "Seek answers at the old Sage's tower", next: 2 }
+      { text: "Brave the ominous Dimwood", next: 1 },
+      { text: "Seek the coastal path to Sorcerer's Isle", next: 2 },
+      { text: "Try your luck in the city of Krondor", next: 7 }
     ]
   },
-  { // 1: Whispering Woods
+  { // 1: Dimwood Forest - Entrance
     text: `
-    The Whispering Woods are dim and ancient, sunlight struggling to pierce the thick canopy. Strange sounds echo around you. You feel a prickle of unease.
+    The ancient trees of the Dimwood loom, their branches intertwined like skeletal fingers, blocking out much of the sun. Strange rustlings echo from the deeper shadows. You recall tales of goblins, Nighthawks, and worse.
     `,
     choices: [
-      { text: "Press deeper into the woods", next: 3 }, // Changed to go to scene 3 (our end scene for now)
-      { text: "Turn back to the crossroads", next: 0 }
+      { text: "Press deeper, following a faint game trail", next: 4 },
+      { text: "Stick to the edge, looking for a clearer route", next: 5 },
+      { text: "This feels too dangerous. Return to the crossroads", next: 0 }
     ]
   },
-  { // 2: Sage's Tower
+  { // 2: Coastal Path - Towards Sorcerer's Isle
     text: `
-    The Sage's tower looms before you, crumbling but still majestic. The door is slightly ajar. You hear the faint sound of pages turning.
+    The coastal path is rugged, the salt spray invigorating. In the distance, you can just make out the mist-shrouded silhouette of what might be Sorcerer's Isle. You spot a small, weathered shrine to a sea god.
     `,
     choices: [
-      { text: "Enter the tower", next: 3 }, // Changed to go to scene 3
-      { text: "Decide it's too risky and return to the crossroads", next: 0 }
+      { text: "Offer a small prayer and continue", next: 6 },
+      { text: "Search the shrine for anything of value", next: 10 }, // Leads to consolation
+      { text: "The Isle seems too far. Head back.", next: 0 }
     ]
   },
-  // Note: Your original end scene was index 21. I've made it index 3 here for simplicity with fewer scenes.
-  // You can expand this later.
-  { // 3: End scene (was 21)
+  { // 3: Generic Success / Good Outcome
+    text: `
+    <b>Fortune smiles upon you!</b><br>
+    <br>
+    Through cunning, bravery, or sheer luck, you've navigated the immediate perils and perhaps even gained a small boon. The path ahead seems clearer, for now.
+    <br><br>
+    <i>This is a placeholder for a more specific success. You can link various good outcomes here or create more unique success scenes.</i>
+    <br><br>
+    Your journey continues... (but for this demo, it ends here).
+    `,
+    choices: [
+        { text: "Reflect on your success and play again?", next: 13} // Links to main end
+    ]
+  },
+  { // 4: Dimwood - Deeper In, Strange Lights
+    text: `
+    The game trail leads you deeper. Eerie, phosphorescent fungi cast a faint glow on the path. Ahead, you see flickering lights, like will-o'-the-wisps dancing.
+    `,
+    choices: [
+      { text: "Investigate the lights cautiously", next: 8 },
+      { text: "Avoid the lights and try to find another way", next: 5 }
+    ]
+  },
+  { // 5: Dimwood - Treacherous Path, Growl
+    text: `
+    You try to find a clearer route, but the undergrowth is thick and thorny. Suddenly, a low, guttural growl echoes from nearby bushes. You can't see what made it.
+    `,
+    choices: [
+      { text: "Draw your weapon and prepare for a fight!", next: 9 },
+      { text: "Attempt to sneak away very quietly", next: 3 } // Success - snuck away
+    ]
+  },
+  { // 6: Coastal Path - Hermit's Cave
+    text: `
+    Continuing along the coast, you stumble upon a hidden cave. An old hermit, weathered as the cliffs, sits by a small fire. He eyes you warily. "Few travel this way. What do you seek, wanderer?"
+    `,
+    choices: [
+      { text: "Ask for wisdom about Sorcerer's Isle", next: 3 }, // Success - gained info
+      { text: "Ask if he has any spare provisions", next: 10 }, // Consolation - he offers moldy bread
+      { text: "He looks shifty. Best to leave.", next: 2 }
+    ]
+  },
+  { // 7: Krondor - The Mockingbird Tavern
+    text: `
+    You enter Krondor and find your way to "The Mockingbird's Fancy," a notorious tavern frequented by the city's less savory elements, but also a place of many rumours. The air is thick with smoke and harsh laughter. A shifty-looking fellow eyes your coin purse.
+    `,
+    choices: [
+      { text: "Order an ale and try to listen for useful gossip", next: 12 },
+      { text: "Confront the fellow eyeing your purse", next: 11 }, // Leads to consolation
+      { text: "This place is too rough. Leave immediately.", next: 0 }
+    ]
+  },
+  { // 8: Dimwood - Will-o'-the-Wisps lead to a Moredhel Trap
+    text: `
+    The lights dance alluringly, leading you into a small clearing. Suddenly, the ground gives way! You've stumbled into a cleverly concealed pit trap, likely set by Moredhel (Dark Elves). You're bruised but not seriously injured.
+    `,
+    choices: [
+        { text: "Curse your luck and try to climb out", next: 10 } // Consolation - stuck for a bit
+    ]
+  },
+  { // 9: Dimwood - Goblin Ambush!
+    text: `
+    As you ready yourself, three scraggly goblins armed with crude spears burst from the bushes! They look hungry.
+    `,
+    choices: [
+      { text: "Fight them off!", next: 3 }, // Success - defeated goblins
+      { text: "Try to intimidate them with a war cry", next: 10 } // Consolation - they just laugh
+    ]
+  },
+  { // 10: Consolation Scene (FAILURE/BAD LUCK)
+    text: `
+    <b>Well, that didn't quite go as planned, did it?</b><br>
+    <br>
+    Perhaps you zigged when you should have zagged. Or maybe fate just has a twisted sense of humour today. Don't worry, it happens to the best of adventurers.
+    `,
+    consolation: true // This will trigger the "Claim Your Consolation Prize" button and the special message
+  },
+  { // 11: Krondor - Tavern Confrontation Gone Wrong
+    text: `
+    You confront the man. "Problem, friend?" he snarls, and two of his burly companions rise from a nearby table. Things escalate quickly, and you're unceremoniously thrown out of the tavern, lighter of coin and heavier of bruises.
+    `,
+    consolation: true // This will trigger the "Claim Your Consolation Prize" button
+  },
+  { // 12: Krondor - Tavern Gossip
+    text: `
+    You nurse your ale and overhear a hushed conversation about a 'Valheru artifact' supposedly lost in the sewers beneath the palace. Could be nonsense, or the score of a lifetime...
+    `,
+    choices: [
+        { text: "A Valheru artifact? Too dangerous! Ignore it.", next: 0},
+        { text: "This sounds like a grand adventure! (Leads to success for now)", next: 3}
+    ]
+  },
+  { // 13: Main End Scene (was 21 in original, then 3 in my first fix)
     text: `
     <b>Your journey in Midkemia comes to a close... for now.</b><br>
     <br>
@@ -58,15 +151,10 @@ const story = [
     `,
     choices: []
   }
-  // Example of a scene with a consolation prize:
-  // { // 4: Consolation scene example
-  //   text: "You tripped on a loose stone and twisted your ankle. How unfortunate!",
-  //   consolation: true // This will trigger the "Claim Your Consolation Prize" button
-  // }
 ];
 
 // DOM helpers
-// function $(id) { return document.getElementById(id); } // Already have this via direct getElementById
+// function $(id) { return document.getElementById(id); } // Not strictly needed
 
 // Rendering logic
 function render(sceneIdx) {
@@ -81,7 +169,7 @@ function render(sceneIdx) {
 
   // Ensure sceneIdx is valid
   if (sceneIdx < 0 || sceneIdx >= story.length || !story[sceneIdx]) {
-    console.error("Error: Invalid scene index or scene not defined:", sceneIdx);
+    console.error("Error: Invalid scene index or scene not defined:", sceneIdx, "Max index is:", story.length -1);
     const errorDiv = document.createElement('div');
     errorDiv.className = 'story-text';
     errorDiv.innerHTML = `<b>Error:</b> Story scene ${sceneIdx} is not defined. Please check your story data or ensure all scenes are numbered correctly starting from 0. Current last scene index is ${story.length - 1}.`;
@@ -125,7 +213,6 @@ function render(sceneIdx) {
         render(choice.fail);
       } else {
         console.warn("Choice has no 'next' or 'fail' property defined, and is not an end scene:", choice, "Current scene:", sceneIdx);
-        // Potentially render the current scene again or an error message if this is unexpected
       }
     };
     box.appendChild(btn);
@@ -138,10 +225,10 @@ function showLoser() {
   // Animate custom "game over" screen, then restart
   const loserDiv = document.createElement('div');
   loserDiv.className = 'loser-flash';
-  loserDiv.textContent = "Never mind doll, we still love you ya daft old bint";
+  loserDiv.textContent = "Never mind doll, we still love you ya daft old bint"; // Your requested message!
   document.body.appendChild(loserDiv);
   setTimeout(() => {
-    if (loserDiv.parentNode) {
+    if (loserDiv.parentNode) { // Check if still in DOM before removing
         loserDiv.remove();
     }
     render(0); // Restart the game from the beginning
@@ -149,18 +236,10 @@ function showLoser() {
 }
 
 // Start game
-// Ensure the DOM is fully loaded before trying to access elements, especially for game-root.
-// However, since script.js is at the end of body, game-root should exist.
-// The sparkle effect IIFE runs immediately.
-// The render(0) call will run as soon as this script is parsed.
-
 if (document.getElementById('game-root')) {
     render(0);
 } else {
-    // This might be too late if the script is deferred or async in a way that game-root isn't ready
-    // But given index.html, it should be fine.
     console.error("Game root not found at initial load time for render(0).");
-    // Could add a DOMContentLoaded listener here as a fallback if needed,
-    // but for script at end of body, it's usually not.
+    // Fallback if script loaded before DOM, though unlikely with script at end of body
     // document.addEventListener('DOMContentLoaded', () => render(0));
 }
