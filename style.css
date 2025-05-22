@@ -1,68 +1,132 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700&display=swap');
+
 body {
-  background: linear-gradient(135deg, #18141c 0%, #43235d 100%);
-  color: #eee;
-  font-family: 'Merriweather', serif;
   margin: 0;
-  min-height: 100vh;
+  font-family: 'Merriweather', serif;
+  color: #f5f4ec;
   overflow: hidden;
+  min-height: 100vh;
+}
+
+#bg-parallax {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background: linear-gradient(120deg, #23144a 0%, #4e306c 65%, #ad90d2 100%);
+  background-size: 300% 300%;
+  animation: parallaxMove 14s ease-in-out infinite alternate;
+  filter: blur(1.5px) brightness(0.9);
+}
+
+@keyframes parallaxMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Sparkling effect */
+#bg-sparkle {
+  pointer-events: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+}
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 0 10px 3px #fff7, 0 0 24px 10px #bbaaff60;
+  opacity: 0.6;
+  animation: sparkleAnim 2.5s linear infinite;
+}
+@keyframes sparkleAnim {
+  0% { opacity: 0; transform: scale(0.5);}
+  20% { opacity: 0.8; }
+  50% { opacity: 1; transform: scale(1);}
+  100% { opacity: 0; transform: scale(1.2);}
 }
 
 #game-root {
+  z-index: 5;
+  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   min-height: 100vh;
-  padding: 2rem;
+  width: 100vw;
 }
 
 .game-box {
-  background: rgba(24, 20, 28, 0.95);
-  border-radius: 18px;
-  box-shadow: 0 0 50px 0 #2c1040b7;
-  padding: 2rem 3rem;
-  max-width: 540px;
-  width: 100%;
-  margin: 1rem auto;
-  text-align: center;
+  background: rgba(24, 20, 28, 0.94);
+  border-radius: 22px;
+  box-shadow: 0 0 60px 0 #24094b85;
+  padding: 2.5rem 2rem 2rem 2rem;
+  max-width: 650px;
+  min-width: 320px;
+  margin: 2rem 1rem;
+  text-align: left;
   position: relative;
+  overflow: hidden;
+}
+
+.story-text {
+  font-size: 1.22rem;
+  line-height: 1.6;
+  margin-bottom: 2.3rem;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 16px #0008, 0 1px 0 #b9d;
+  animation: textPopIn 0.8s cubic-bezier(0.3,0.7,0.1,1.2);
+}
+
+@keyframes textPopIn {
+  0% { opacity: 0; transform: translateY(24px);}
+  100% { opacity: 1; transform: none;}
 }
 
 .choice-btn {
   display: block;
-  background: #3c236e;
+  background: linear-gradient(90deg, #57339e 10%, #a783ff 90%);
   color: #fff;
   border: none;
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 1.25rem auto 0 auto;
+  border-radius: 12px;
+  padding: 1rem 0.5rem;
+  margin: 1.1rem auto 0 auto;
   width: 80%;
-  font-size: 1.2rem;
-  transition: background 0.25s;
+  font-size: 1.18rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background 0.22s, box-shadow 0.22s;
   cursor: pointer;
+  box-shadow: 0 2px 14px #0d0c22cc;
 }
 .choice-btn:hover {
-  background: #6d3faf;
+  background: linear-gradient(90deg, #a783ff 10%, #57339e 90%);
+  box-shadow: 0 4px 24px #c8baff60;
+  color: #fffbe7;
 }
 
 .loser-flash {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(40,0,20,0.93);
+  background: rgba(60,10,40,0.97);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 3rem;
   color: #ff4060;
-  z-index: 9999;
+  z-index: 100;
   font-weight: bold;
+  text-shadow: 0 4px 36px #e11d40cc, 0 1px 2px #fff8;
   animation: loserFlash 1.5s;
+  letter-spacing: 0.08em;
 }
-
 @keyframes loserFlash {
-  0%   { opacity: 0;   filter: blur(4px); }
-  20%  { opacity: 1;   filter: blur(0);}
-  50%  { opacity: 1;   filter: blur(0);}
-  70%  { opacity: 0.6; filter: blur(3px);}
-  100% { opacity: 0;   filter: blur(10px);}
+  0%   { opacity: 0;   filter: blur(8px);}
+  12%  { opacity: 1;   filter: blur(0);}
+  60%  { opacity: 1;   filter: blur(0);}
+  80%  { opacity: 0.7; filter: blur(2.5px);}
+  100% { opacity: 0;   filter: blur(15px);}
 }
