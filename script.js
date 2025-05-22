@@ -12,9 +12,8 @@
   }
 })();
 
-// Story nodes with fail consequence scenes
+// Story nodes with consequence scenes
 const story = [
-  // 0: Scene 1
   {
     text: `
     <b>Dawn at Crydee</b><br><br>
@@ -28,7 +27,6 @@ const story = [
       { text: "Go to the keep and report the strangeness.", fail: 10 }
     ]
   },
-  // 1: Scene 2
   {
     text: `
     <b>The Whispering Grove</b><br><br>
@@ -41,7 +39,6 @@ const story = [
       { text: "Take the easy, dark path.", fail: 11 }
     ]
   },
-  // 2: Scene 3
   {
     text: `
     <b>Encounter with the Magician</b><br><br>
@@ -54,7 +51,6 @@ const story = [
       { text: "Flee back to Crydee.", fail: 12 }
     ]
   },
-  // 3: Scene 4
   {
     text: `
     <b>The Rift Opens</b><br><br>
@@ -67,7 +63,6 @@ const story = [
       { text: "Attempt to parley.", next: 4 }
     ]
   },
-  // 4: Scene 5
   {
     text: `
     <b>Audience with the Warlord</b><br><br>
@@ -81,7 +76,6 @@ const story = [
       { text: "Trust.", next: 5 }
     ]
   },
-  // 5: Scene 6
   {
     text: `
     <b>The Arena of Shadows</b><br><br>
@@ -94,7 +88,6 @@ const story = [
       { text: "Try to escape through the grate.", next: 6 }
     ]
   },
-  // 6: Scene 7
   {
     text: `
     <b>Escape and Revelation</b><br><br>
@@ -109,7 +102,6 @@ const story = [
       { text: "A shadow.", fail: 18 }
     ]
   },
-  // 7: Scene 8
   {
     text: `
     <b>Sanctum of the Rift</b><br><br>
@@ -123,7 +115,6 @@ const story = [
       { text: "Channel the crystal’s power.", next: 8 }
     ]
   },
-  // 8: Scene 9
   {
     text: `
     <b>The Choice of Sacrifice</b><br><br>
@@ -135,7 +126,6 @@ const story = [
       { text: "Let Pug bear the cost.", fail: 20 }
     ]
   },
-  // 9: Scene 10 (Victory)
   {
     text: `
     <b>Homecoming</b><br><br>
@@ -148,169 +138,85 @@ const story = [
       { text: "No, end your journey.", next: 21 }
     ]
   },
-  // 10-20: Consequence Scenes (one for each wrong answer)
-  // 10
-  {
+  // Consequence scenes
+  { // 10
     text: `<b>Consequences</b><br><br>
     You turn away from the unknown, but by the time the alarm is raised, it is too late.
     Shadows have already slipped past the keep. The world shifts toward darkness, unchallenged.<br><br>
     <em>Your tale ends here.</em>`,
     consolation: true
   },
-  // 11
-  {
+  { // 11
     text: `<b>Consequences</b><br><br>
     You step onto the easy path, lulled by its calm. The forest darkens and, too late, you realise—this is the hunting ground of the Nighthawks.
     Shadows close in. Your journey is lost, and so is Midkemia's last hope.<br><br>
     <em>Your tale ends here.</em>`,
     consolation: true
   },
-  // 12
-  {
+  { // 12
     text: `<b>Consequences</b><br><br>
     You flee back to Crydee, but the rift’s power spreads unchecked.
     Darkness and confusion reign, and your name is lost to history.<br><br>
     <em>Your tale ends here.</em>`,
     consolation: true
   },
-  // 13
-  {
+  { // 13
     text: `<b>Consequences</b><br><br>
     You raise your blade, but the Tsurani are many. You fight bravely, but are quickly overcome.
     As the world narrows to shadow, your sacrifice is soon forgotten.<br><br>
     <em>Your tale ends here.</em>`,
     consolation: true
   },
-  // 14
-  {
+  { // 14
     text: `<b>Consequences</b><br><br>
     You name steel as the greatest strength. The Warlord frowns, disappointed.
     You are cast out as a brute, unworthy of trust or magic.<br><br>
     <em>Your tale ends here.</em>`,
     consolation: true
   },
-  // 15
-  {
+  { // 15
     text: `<b>Consequences</b><br><br>
     You choose magic, but the Warlord laughs.
     “Magic without trust is chaos.” You are led away in silence, your fate sealed.<br><br>
     <em>Your tale ends here.</em>`,
     consolation: true
   },
-  // 16
-  {
+  { // 16
     text: `<b>Consequences</b><br><br>
     You grab the sword, facing the beast head-on. Your bravery is noted, but the creature is too strong.
     The arena roars as you fall. Some stories are short-lived.<br><br>
     <em>Your tale ends here.</em>`,
     consolation: true
   },
-  // 17
-  {
+  { // 17
     text: `<b>Consequences</b><br><br>
     “A dog,” you answer. The door does not budge.
     The temple grows cold, and you are lost beneath the earth.<br><br>
     <em>Your tale ends here.</em>`,
     consolation: true
   },
-  // 18
-  {
+  { // 18
     text: `<b>Consequences</b><br><br>
     “A shadow,” you answer. The door vanishes, replaced by utter darkness.
     In Kelewan’s depths, you vanish as well.<br><br>
     <em>Your tale ends here.</em>`,
     consolation: true
   },
-  // 19
-  {
+  { // 19
     text: `<b>Consequences</b><br><br>
     You strike the crystal. The room fills with blinding light and roaring energy. Both worlds tremble and begin to fall apart.
     No one survives to tell your tale.<br><br>
     <em>Your tale ends here.</em>`,
     consolation: true
   },
-  // 20
-  {
+  { // 20
     text: `<b>Consequences</b><br><br>
     You let Pug bear the cost. He staggers, drained, and though the rift closes, he is lost to the darkness. 
     You return home, but at a cost too great to bear.<br><br>
     <em>Your tale ends here.</em>`,
     consolation: true
   },
-  // 21: End
+  // 21: End scene
   {
     text: `
-    <b>Your journey in Midkemia comes to a close... for now.</b><br>
-    <br>
-    Refresh the page to play again.<br>
-    <br>
-    <i>“A single choice can shape worlds. Farewell, adventurer.”</i>
-    `,
-    choices: []
-  }
-];
-
-// DOM helpers
-function $(id) { return document.getElementById(id); }
-
-// Rendering logic
-function render(sceneIdx) {
-  const root = document.getElementById('game-root');
-  root.innerHTML = '';
-  const box = document.createElement('div');
-  box.className = 'game-box';
-
-  const scene = story[sceneIdx];
-
-  const storyDiv = document.createElement('div');
-  storyDiv.className = 'story-text';
-  storyDiv.innerHTML = scene.text;
-  box.appendChild(storyDiv);
-
-  if (scene.consolation) {
-    // Show "Claim Your Consolation Prize" button
-    const prizeBtn = document.createElement('button');
-    prizeBtn.className = 'consolation-btn';
-    prizeBtn.innerHTML = 'Claim Your Consolation Prize';
-    prizeBtn.onclick = () => showLoser();
-    box.appendChild(prizeBtn);
-    root.appendChild(box);
-    return;
-  }
-
-  if (!scene.choices || scene.choices.length === 0) {
-    root.appendChild(box);
-    return;
-  }
-
-  scene.choices.forEach(choice => {
-    const btn = document.createElement('button');
-    btn.className = 'choice-btn';
-    btn.innerHTML = choice.text;
-    btn.onclick = () => {
-      if (choice.next !== undefined) {
-        render(choice.next);
-      } else if (choice.fail !== undefined) {
-        render(choice.fail);
-      }
-    };
-    box.appendChild(btn);
-  });
-
-  root.appendChild(box);
-}
-
-function showLoser() {
-  // Animate custom "game over" screen, then restart
-  const loserDiv = document.createElement('div');
-  loserDiv.className = 'loser-flash';
-  loserDiv.textContent = "Never mind doll, we still love you ya daft old bint";
-  document.body.appendChild(loserDiv);
-  setTimeout(() => {
-    loserDiv.remove();
-    render(0);
-  }, 2300);
-}
-
-// Start game
-render(0);
+    <b>Your journey in Midkemia comes

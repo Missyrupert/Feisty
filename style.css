@@ -13,15 +13,8 @@ body {
   width: 100vw;
   height: 100vh;
   z-index: 0;
-  background: linear-gradient(120deg, #23144a 0%, #4e306c 65%, #ad90d2 100%);
-  background-size: 300% 300%;
-  animation: parallaxMove 14s ease-in-out infinite alternate;
-  filter: blur(1.5px) brightness(0.9);
-}
-
-@keyframes parallaxMove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
+  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') center center / cover no-repeat;
+  filter: blur(1.5px) brightness(0.78);
 }
 
 #bg-sparkle {
@@ -36,9 +29,9 @@ body {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.8);
   box-shadow: 0 0 10px 3px #fff7, 0 0 24px 10px #bbaaff60;
-  opacity: 0.6;
+  opacity: 0.55;
   animation: sparkleAnim 2.5s linear infinite;
 }
 @keyframes sparkleAnim {
@@ -59,11 +52,11 @@ body {
 }
 
 .game-box {
-  background: rgba(24, 20, 28, 0.94);
-  border-radius: 22px;
-  box-shadow: 0 0 60px 0 #24094b85;
-  padding: 2.5rem 2rem 2rem 2rem;
-  max-width: 650px;
+  background: rgba(24, 20, 28, 0.92);
+  border-radius: 20px;
+  box-shadow: 0 0 44px 0 #2e143ba1;
+  padding: 2.2rem 1.3rem 1.8rem 1.3rem;
+  max-width: 620px;
   min-width: 320px;
   margin: 2rem 1rem;
   text-align: left;
@@ -72,11 +65,11 @@ body {
 }
 
 .story-text {
-  font-size: 1.22rem;
-  line-height: 1.6;
+  font-size: 1.16rem;
+  line-height: 1.64;
   margin-bottom: 2.3rem;
   letter-spacing: 0.01em;
-  text-shadow: 0 2px 16px #0008, 0 1px 0 #b9d;
+  text-shadow: 0 2px 14px #0009, 0 1px 0 #b9d;
   animation: textPopIn 0.8s cubic-bezier(0.3,0.7,0.1,1.2);
 }
 
@@ -93,8 +86,8 @@ body {
   border-radius: 12px;
   padding: 1rem 0.5rem;
   margin: 1.1rem auto 0 auto;
-  width: 80%;
-  font-size: 1.18rem;
+  width: 90%;
+  font-size: 1.12rem;
   font-weight: 600;
   letter-spacing: 0.02em;
   transition: background 0.22s, box-shadow 0.22s;
@@ -119,7 +112,7 @@ body {
   z-index: 100;
   font-weight: bold;
   text-shadow: 0 4px 36px #e11d40cc, 0 1px 2px #fff8;
-  animation: loserFlash 1.9s;
+  animation: loserFlash 1.8s;
   letter-spacing: 0.05em;
   text-align: center;
   padding: 2rem;
@@ -137,18 +130,18 @@ body {
   .game-box {
     max-width: 98vw;
     min-width: 0;
-    padding: 1.1rem 0.5rem 1.2rem 0.5rem;
+    padding: 1rem 0.4rem 1.2rem 0.4rem;
   }
   .story-text {
-    font-size: 1.04rem;
+    font-size: 0.99rem;
   }
   .choice-btn, .consolation-btn {
-    width: 98%;
-    font-size: 1rem;
-    padding: 0.9rem 0.2rem;
+    width: 99%;
+    font-size: 0.98rem;
+    padding: 0.8rem 0.2rem;
   }
   .loser-flash {
-    font-size: 1.16rem;
+    font-size: 1rem;
     padding: 0.5rem;
   }
 }
