@@ -125,7 +125,6 @@ body {
   100% { opacity: 0;   filter: blur(15px);}
 }
 
-/* Mobile responsive styles */
 @media (max-width: 480px) {
   .game-box {
     max-width: 98vw;

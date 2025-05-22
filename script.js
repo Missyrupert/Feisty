@@ -12,7 +12,6 @@
   }
 })();
 
-// Story nodes with consequence scenes
 const story = [
   {
     text: `
@@ -216,7 +215,6 @@ const story = [
     <em>Your tale ends here.</em>`,
     consolation: true
   },
-  // 21: End scene
-  {
+  { // 21: End scene
     text: `
-    <b>Your journey in Midkemia comes
+    <b>Your journey in Midkemia comes to a close...
