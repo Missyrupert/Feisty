@@ -149,6 +149,7 @@ const story = [
     ]
   },
   // 10-20: Consequence Scenes (one for each wrong answer)
+  // 10
   {
     text: `<b>Consequences</b><br><br>
     You turn away from the unknown, but by the time the alarm is raised, it is too late.
@@ -156,6 +157,7 @@ const story = [
     <em>Your tale ends here.</em>`,
     consolation: true
   },
+  // 11
   {
     text: `<b>Consequences</b><br><br>
     You step onto the easy path, lulled by its calm. The forest darkens and, too late, you realise—this is the hunting ground of the Nighthawks.
@@ -163,6 +165,7 @@ const story = [
     <em>Your tale ends here.</em>`,
     consolation: true
   },
+  // 12
   {
     text: `<b>Consequences</b><br><br>
     You flee back to Crydee, but the rift’s power spreads unchecked.
@@ -170,6 +173,7 @@ const story = [
     <em>Your tale ends here.</em>`,
     consolation: true
   },
+  // 13
   {
     text: `<b>Consequences</b><br><br>
     You raise your blade, but the Tsurani are many. You fight bravely, but are quickly overcome.
@@ -177,6 +181,7 @@ const story = [
     <em>Your tale ends here.</em>`,
     consolation: true
   },
+  // 14
   {
     text: `<b>Consequences</b><br><br>
     You name steel as the greatest strength. The Warlord frowns, disappointed.
@@ -184,6 +189,7 @@ const story = [
     <em>Your tale ends here.</em>`,
     consolation: true
   },
+  // 15
   {
     text: `<b>Consequences</b><br><br>
     You choose magic, but the Warlord laughs.
@@ -191,6 +197,7 @@ const story = [
     <em>Your tale ends here.</em>`,
     consolation: true
   },
+  // 16
   {
     text: `<b>Consequences</b><br><br>
     You grab the sword, facing the beast head-on. Your bravery is noted, but the creature is too strong.
@@ -198,6 +205,7 @@ const story = [
     <em>Your tale ends here.</em>`,
     consolation: true
   },
+  // 17
   {
     text: `<b>Consequences</b><br><br>
     “A dog,” you answer. The door does not budge.
@@ -205,6 +213,7 @@ const story = [
     <em>Your tale ends here.</em>`,
     consolation: true
   },
+  // 18
   {
     text: `<b>Consequences</b><br><br>
     “A shadow,” you answer. The door vanishes, replaced by utter darkness.
@@ -212,8 +221,96 @@ const story = [
     <em>Your tale ends here.</em>`,
     consolation: true
   },
+  // 19
   {
     text: `<b>Consequences</b><br><br>
     You strike the crystal. The room fills with blinding light and roaring energy. Both worlds tremble and begin to fall apart.
     No one survives to tell your tale.<br><br>
-    <
+    <em>Your tale ends here.</em>`,
+    consolation: true
+  },
+  // 20
+  {
+    text: `<b>Consequences</b><br><br>
+    You let Pug bear the cost. He staggers, drained, and though the rift closes, he is lost to the darkness. 
+    You return home, but at a cost too great to bear.<br><br>
+    <em>Your tale ends here.</em>`,
+    consolation: true
+  },
+  // 21: End
+  {
+    text: `
+    <b>Your journey in Midkemia comes to a close... for now.</b><br>
+    <br>
+    Refresh the page to play again.<br>
+    <br>
+    <i>“A single choice can shape worlds. Farewell, adventurer.”</i>
+    `,
+    choices: []
+  }
+];
+
+// DOM helpers
+function $(id) { return document.getElementById(id); }
+
+// Rendering logic
+function render(sceneIdx) {
+  const root = document.getElementById('game-root');
+  root.innerHTML = '';
+  const box = document.createElement('div');
+  box.className = 'game-box';
+
+  const scene = story[sceneIdx];
+
+  const storyDiv = document.createElement('div');
+  storyDiv.className = 'story-text';
+  storyDiv.innerHTML = scene.text;
+  box.appendChild(storyDiv);
+
+  if (scene.consolation) {
+    // Show "Claim Your Consolation Prize" button
+    const prizeBtn = document.createElement('button');
+    prizeBtn.className = 'consolation-btn';
+    prizeBtn.innerHTML = 'Claim Your Consolation Prize';
+    prizeBtn.onclick = () => showLoser();
+    box.appendChild(prizeBtn);
+    root.appendChild(box);
+    return;
+  }
+
+  if (!scene.choices || scene.choices.length === 0) {
+    root.appendChild(box);
+    return;
+  }
+
+  scene.choices.forEach(choice => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.innerHTML = choice.text;
+    btn.onclick = () => {
+      if (choice.next !== undefined) {
+        render(choice.next);
+      } else if (choice.fail !== undefined) {
+        render(choice.fail);
+      }
+    };
+    box.appendChild(btn);
+  });
+
+  root.appendChild(box);
+}
+
+function showLoser() {
+  // Animate custom "game over" screen, then restart
+  const loserDiv = document.createElement('div');
+  loserDiv.className = 'loser-flash';
+  loserDiv.textContent = "Never mind doll, we still love you ya daft old bint";
+  document.body.appendChild(loserDiv);
+  setTimeout(() => {
+    loserDiv.remove();
+    render(0);
+  }, 2300);
+}
+
+// Start game
+render(0);
